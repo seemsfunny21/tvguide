@@ -1,0 +1,36 @@
+name: Verify deployed launchers
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/verify-launchers.yml
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check live HTTP links
+        run: |
+          python3 - <<'PY'
+          import urllib.request, re, concurrent.futures
+          base='https://seemsfunny21.github.io/'
+          def get(url):
+              with urllib.request.urlopen(url,timeout=25) as r:
+                  return r.status,r.read().decode('utf-8',errors='replace')
+          urls={base+'apps/',base+'applications/',base+'tvguide/'}
+          for launcher in ('apps/','applications/'):
+              status,html=get(base+launcher)
+              urls.update(re.findall(r'https://seemsfunny21\.github\.io/[a-zA-Z0-9_/.-]+',html))
+          def check(url):
+              try:
+                  status,html=get(url)
+                  return url,status,bool(html.strip())
+              except Exception as e:
+                  return url,str(e),False
+          with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+              results=list(pool.map(check,sorted(urls)))
+          for row in results: print(*row)
+          assert all(status==200 and ok for _,status,ok in results)
+          PY
