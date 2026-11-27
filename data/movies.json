@@ -1,6 +1,6 @@
 {
-  "at": 1795767815735,
-  "schedule_at": 1795767811767,
+  "at": 1795814023672,
+  "schedule_at": 1795814019002,
   "movies": {
     "[K] Η DC Λεγεώνα από τα Σούπερ - Κατοικίδια (DC League of Super - Pets)|": {
       "id": 539681,
@@ -11,19 +11,19 @@
     "[K] Εγώ, ο Απαισιότατος 2 (Despicable me 2)|": {
       "id": 93456,
       "vote_average": 6.951,
-      "vote_count": 12399,
+      "vote_count": 12400,
       "trailer": "EK3j98PHaGM"
     },
     "[K12] Αβάσταχτη Γοητεία (Intolerable Cruelty)|": {
       "id": 11775,
       "vote_average": 5.966,
-      "vote_count": 1747,
+      "vote_count": 1748,
       "trailer": null
     },
     "[K8] Βικτώρια και Αμπντούλ (Victoria & Abdul)|": {
       "id": 423899,
-      "vote_average": 6.883,
-      "vote_count": 1237,
+      "vote_average": 6.88,
+      "vote_count": 1238,
       "trailer": "3xo-EP_O5pQ"
     }
   }
